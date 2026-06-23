@@ -400,7 +400,7 @@ function Hero() {
           <a
             href="/__l5e/assets-v1/21f63430-6ae7-43b0-9104-d74a28e95c5f/Subhan_Shaikh_AI_Resume.pdf"
             download
-            className="inline-flex items-center gap-2 rounded-md border border-primary/60 px-5 py-3 text-sm font-medium text-primary hover:bg-primary/10 transition"
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
           >
             <Download size={16} /> Download résumé
           </a>
