@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download, Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/WhatsApp Image 2026-06-23 at 12.03.47 PM.jpeg";
 
 export const Route = createFileRoute("/")({
@@ -102,12 +102,20 @@ function CountUp({ value, suffix = "", duration = 1400 }: { value: number; suffi
 }
 
 function NavBar({ active }: { active: string }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/60">
       <nav className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
         <a href="#top" className="text-base font-semibold tracking-tight text-foreground hover:text-primary transition">
           Subhan Shaikh
         </a>
+        
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8 text-sm">
           {NAV.map((n) => (
             <li key={n.id}>
@@ -120,7 +128,35 @@ function NavBar({ active }: { active: string }) {
             </li>
           ))}
         </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:text-primary hover:bg-card/50 transition"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </nav>
+
+      {/* Mobile Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-b border-border/60 bg-background/95 backdrop-blur-md">
+          <ul className="px-6 py-4 space-y-3">
+            {NAV.map((n) => (
+              <li key={n.id}>
+                <a
+                  href={`#${n.id}`}
+                  onClick={handleNavClick}
+                  className={`block py-2 text-base transition-colors ${active === n.id ? "text-primary font-medium" : "text-foreground/80 hover:text-primary"}`}
+                >
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }
