@@ -73,3 +73,22 @@ temp/
 # Debug
 .vscode-test/
 *.cpuprofile
+
+# Lovable (no longer needed for static deployment)
+.lovable/
+AGENTS.md
+
+# Bun (if using npm, ignore bun files)
+bun.lock
+bunfig.toml
+
+# Vercel (deployment-specific, optional to ignore)
+.vercel/
+
+# Scripts (post-build script no longer needed)
+scripts/post-build.js
+
+# API folder (SSR-specific, no longer needed)
+api/
+
+vercel.json
