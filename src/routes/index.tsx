@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download, Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/WhatsApp Image 2026-06-23 at 12.03.47 PM.jpeg";
+import resumePdf from "@/assets/Subhan_Shaikh_AI_Resume.pdf";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -398,8 +399,8 @@ function Hero() {
             View my work
           </a>
           <a
-            href="/__l5e/assets-v1/21f63430-6ae7-43b0-9104-d74a28e95c5f/Subhan_Shaikh_AI_Resume.pdf"
-            download
+            href={resumePdf}
+            download="Subhan_Shaikh_AI_Resume.pdf"
             className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
           >
             <Download size={16} /> Download résumé
@@ -438,7 +439,7 @@ function About() {
           />
           <div>
             <p className="text-lg leading-relaxed text-foreground/90">
-              Mumbai to Santa Cruz is a long way to go to debug a retrieval pipeline. But that&rsquo;s roughly how it went.
+              Mumbai to California is a long way to go to debug a retrieval pipeline. But that&rsquo;s roughly how it went.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/90">
               IBM gave me my first real AI project. UCSC gave me a <span className="text-primary font-mono">4.0</span> and over a year in Professor Leilani Gilpin&rsquo;s explainability lab — the kind of research that changes how you think about building, not just what you build. Gogentic gave me a startup environment, a small AI team, an eight-week deadline, and an infrastructure cost problem I cut by <span className="text-primary font-mono">80%</span>. CalHacks 2025 gave me three sponsor track wins.
