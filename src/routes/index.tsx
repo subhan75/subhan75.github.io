@@ -442,7 +442,7 @@ function About() {
               Mumbai to California is a long way to go to debug a retrieval pipeline. But that&rsquo;s roughly how it went.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/90">
-              IBM gave me my first real AI project. UCSC gave me a <span className="text-primary font-mono">4.0</span> and over a year in Professor Leilani Gilpin&rsquo;s explainability lab — the kind of research that changes how you think about building, not just what you build. Gogentic gave me a startup environment, a small AI team, an eight-week deadline, and an infrastructure cost problem I cut by <span className="text-primary font-mono">80%</span>. CalHacks 2025 gave me three sponsor track wins.
+              IBM gave me my first real AI project. UCSC gave me a <span className="text-primary font-mono">4.0</span> and over a year of research in explainability and Vision Language models, the kind of research that changes how you think about building, not just what you build. Gogentic gave me a startup environment, a small AI team, an eight-week deadline, and an infrastructure cost problem I cut by <span className="text-primary font-mono">80%</span>. CalHacks 2025 gave me three sponsor track wins.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/90">
               What I got out of all of it is harder to put on a resume. I know where these systems break, and I know how to make sure they don&rsquo;t.
@@ -497,8 +497,7 @@ const ROLES: Role[] = [
     location: "Santa Cruz, CA",
     dates: "Jan 2025 – Mar 2026",
     bullets: [
-      "Researched integrating Prolog-based symbolic reasoning with LLMs to improve decision explainability and reduce hallucinations, in Prof. Leilani Gilpin's AI Explainability & Accountability Lab.",
-      "Built a CS-department chatbot using advanced Retrieval-Augmented Generation over course and program data.",
+      "Researched advanced Retrieval-Augmented Generation techniques to build a CS-department specific chatbot over course and program data, under Professor Leilani Gilpin's AI Explainability & Accountability Lab. Explored Prolog-based symbolic reasoning as part of broader research into LLM explainability."
     ],
   },
   {
