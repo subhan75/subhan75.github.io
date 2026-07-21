@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { useMutation } from "@tanstack/react-query";
 import { askAssistant } from "@/lib/ai-actions.server";
 import { MessageCircle, X, Send } from "lucide-react";
@@ -13,10 +12,9 @@ export function AskSubhanChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const askAssistantFn = useServerFn(askAssistant);
   const mutation = useMutation({
     mutationFn: async (message: string) => {
-      const response = await askAssistantFn({
+      const response = await askAssistant({
         data: {
           message,
           history: messages.slice(-6),
