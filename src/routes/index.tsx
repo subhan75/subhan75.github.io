@@ -3,7 +3,35 @@ import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download, Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/WhatsApp Image 2026-06-23 at 12.03.47 PM.jpeg";
 import resumePdf from "@/assets/Subhan_Shaikh_AI_Resume.pdf";
-import { ROLES, FEATURED, COMPACT, SKILLS, ARTICULR, CONTACT, type Project } from "@/lib/resume-data";
+// import { ROLES, FEATURED, COMPACT, SKILLS, ARTICULR, CONTACT, type Project } from "@/lib/resume-data";
+
+type Role = {
+  company: string;
+  title: string;
+  location: string;
+  dates: string;
+  bullets: string[];
+  metrics?: { value: number; suffix: string; label: string }[];
+};
+
+type Project = {
+  title: string;
+  tagline?: string;
+  description: string;
+  tech: string[];
+  link?: string;
+  linkLabel?: string;
+  buttonLabel?: string;
+  metrics?: string[];
+  badge?: string;
+};
+
+const ROLES: Role[] = [];
+const FEATURED: Project[] = [];
+const COMPACT: Project[] = [];
+const SKILLS: { label: string; items: string[] }[] = [];
+const ARTICULR: Project = { title: "", description: "", tech: [] };
+const CONTACT = { email: "", github: "", linkedin: "", status: "" };
 
 export const Route = createFileRoute("/")({
   head: () => ({
