@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download, Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/WhatsApp Image 2026-06-23 at 12.03.47 PM.jpeg";
 import resumePdf from "@/assets/Subhan_Shaikh_AI_Resume.pdf";
+import { ROLES, FEATURED, COMPACT, SKILLS, ARTICULR, CONTACT } from "@/lib/resume-data";
+import { AskSubhanChat } from "@/components/AskSubhanChat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
