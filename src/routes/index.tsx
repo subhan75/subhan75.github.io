@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download, Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/WhatsApp Image 2026-06-23 at 12.03.47 PM.jpeg";
 import resumePdf from "@/assets/Subhan_Shaikh_AI_Resume.pdf";
-import { ROLES, FEATURED, COMPACT, SKILLS, ARTICULR, CONTACT } from "@/lib/resume-data";
+import { ROLES, FEATURED, COMPACT, SKILLS, ARTICULR, CONTACT, type Project } from "@/lib/resume-data";
 import { AskSubhanChat } from "@/components/AskSubhanChat";
 
 export const Route = createFileRoute("/")({
@@ -456,73 +456,6 @@ function About() {
   );
 }
 
-type Role = {
-  company: string;
-  title: string;
-  location: string;
-  dates: string;
-  bullets: string[];
-  metrics?: { value: number; suffix: string; label: string }[];
-};
-
-const ROLES: Role[] = [
-  {
-    company: "Gogentic.ai",
-    title: "Applied AI Engineer",
-    location: "Remote",
-    dates: "Jun 2025 – Nov 2025",
-    bullets: [
-      "Led the AI team to deliver a fully functional AI-driven backend MVP within an 8-week sprint, supporting on-schedule user testing with zero major production incidents.",
-      "Reduced AI infrastructure costs by 80% by replacing third-party APIs with evaluated open-source models selected against task-specific quality benchmarks.",
-      "Boosted backend service performance by 50% through custom inference workflows and strategic pipeline optimization.",
-    ],
-    metrics: [
-      { value: 80, suffix: "%", label: "cost reduction" },
-      { value: 50, suffix: "%", label: "perf boost" },
-      { value: 8, suffix: "wk", label: "to MVP" },
-    ],
-  },
-  {
-    company: "Propel Flow",
-    title: "AI Automation Intern",
-    location: "San Francisco Bay Area",
-    dates: "Jun 2025 – Aug 2025",
-    bullets: [
-      "Built AI-driven automation tools for community interaction analysis and response across LinkedIn, Slack, Facebook, and Reddit.",
-      "Analyzed community interactions to surface customer pain points and shipped automated solutions to resolve them at scale.",
-      "Collaborated cross-functionally to ship features that improved user engagement and service efficiency.",
-    ],
-  },
-  {
-    company: "UC Santa Cruz — AIEA Lab",
-    title: "Graduate Researcher",
-    location: "Santa Cruz, CA",
-    dates: "Jan 2025 – Mar 2026",
-    bullets: [
-      "Researched advanced Retrieval-Augmented Generation techniques to build a CS-department specific chatbot over course and program data, under Professor Leilani Gilpin's AI Explainability & Accountability Lab. Explored Prolog-based symbolic reasoning as part of broader research into LLM explainability."
-    ],
-  },
-  {
-    company: "UC Santa Cruz — Baskin Engineering",
-    title: "Course Tutor, CSE 40 (Intro to ML)",
-    location: "Santa Cruz, CA",
-    dates: "Sep 2025 – Mar 2026",
-    bullets: [
-      "Tutored students in foundational machine learning, reinforcing core concepts and problem-solving over exam prep.",
-    ],
-  },
-  {
-    company: "IBM",
-    title: "AI Intern",
-    location: "Remote",
-    dates: "Sep 2022 – Nov 2022",
-    bullets: [
-      "Built a sign-language recognition system end-to-end on the ASL dataset, achieving 90% classification accuracy across the full pipeline from preprocessing to deployment.",
-      "Delivered a working prototype and documented findings for a stakeholder presentation.",
-    ],
-    metrics: [{ value: 90, suffix: "%", label: "accuracy" }],
-  },
-];
 
 function Experience() {
   return (
@@ -592,79 +525,6 @@ function Experience() {
   );
 }
 
-type Project = {
-  title: string;
-  tagline?: string;
-  description: string;
-  tech: string[];
-  link?: string;
-  linkLabel?: string;
-  buttonLabel?: string;
-  metrics?: string[];
-  badge?: string;
-};
-
-const FEATURED: Project[] = [
-  {
-    title: "Orbit.ai",
-    badge: "CalHacks 2025 Winner",
-    description:
-      "A modular, MCP-agnostic developer productivity agent with real-time workflow automation and natural-language voice command execution. Won three sponsor tracks at UC Berkeley's CalHacks 2025, the world's largest collegiate hackathon.",
-    tech: ["Python", "MCP", "Multi-agent"],
-    link: "https://github.com/subhan75/Orbit.ai",
-  },
-  {
-    title: "RepairMate",
-    tagline: "AI-Driven Home Device Diagnostics",
-    description:
-      "A multi-modal, multi-agent system that diagnoses household device faults from user-submitted video, fusing frame extraction, transcription, and Vision-Language model analysis into structured technician summaries. Automated prompt engineering with GEPA (a reflection-based optimizer) tuned against BERTScore. Applied model quantization for real-time on-device performance.",
-    tech: ["Autogen", "OpenCV", "Whisper", "VLMs"],
-    metrics: ["87% smaller model", "70% faster inference", "85% fault detection"],
-  },
-  {
-    title: "Critique-Enhanced RAG",
-    tagline: "Self-Refining Retrieval-Augmented Generation",
-    description:
-      "A self-critiquing RAG system that scores its own answers across four quality dimensions and conditionally refines those below threshold. Benchmarked three architectures (vanilla, LLM reranker, critique-refinement) across quality, cost, and latency.",
-    tech: ["Python", "OpenAI API"],
-    metrics: ["27% quality lift (150 SQuAD)", "refined 56% of answers"],
-    link: "https://github.com/subhan75/Critique-Based-Retrieval-Augemented-Generation-RAG-",
-  },
-  {
-    title: "Rolofy",
-    tagline: "Digital Identity Platform (Live)",
-    description:
-      "A full-stack networking platform that replaces manual handle-swapping with a single scannable identity, letting people instantly exchange all their social and professional profiles at events. Solo-built and deployed end to end.",
-    tech: ["Next.js", "FastAPI", "Supabase", "Vercel"],
-    metrics: ["2k+ impressions", "40+ user profiles"],
-    link: "https://rolofy.online",
-    linkLabel: "rolofy.online",
-  },
-];
-
-const COMPACT: Project[] = [
-  {
-    title: "Memora",
-    description:
-      "An AI mental-health support chatbot combining conversational memory, voice interaction, and sentiment analysis.",
-    tech: [],
-    link: "https://github.com/subhan75/Memora",
-  },
-  {
-    title: "Content-Crew",
-    description:
-      "A multi-agent content generation system that collaboratively creates blog posts, images, and social content.",
-    tech: [],
-    link: "https://github.com/subhan75/Content-Crew",
-  },
-  {
-    title: "AutoCents",
-    description:
-      "A car price prediction model that estimates a vehicle's current value from input parameters.",
-    tech: [],
-    link: "https://github.com/subhan75/AutoCents",
-  },
-];
 
 function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
   return (
