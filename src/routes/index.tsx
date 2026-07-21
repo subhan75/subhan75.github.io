@@ -3,25 +3,50 @@ import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Download, Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/WhatsApp Image 2026-06-23 at 12.03.47 PM.jpeg";
 import resumePdf from "@/assets/Subhan_Shaikh_AI_Resume.pdf";
-import { ROLES, FEATURED, COMPACT, SKILLS, ARTICULR, CONTACT, type Project } from "@/lib/resume-data";
+import {
+  ROLES,
+  FEATURED,
+  COMPACT,
+  SKILLS,
+  ARTICULR,
+  CONTACT,
+  type Project,
+} from "@/lib/resume-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Subhan Shaikh — AI Engineer" },
+      { title: "Subhan Shaikh — AI/ML Engineer | Production LLM Systems" },
       {
         name: "description",
         content:
-          "Subhan Shaikh — AI Engineer building production LLM systems: RAG pipelines, multi-agent architectures, and evaluation infrastructure.",
+          "Subhan Shaikh — AI Engineer building production LLM systems: RAG pipelines, multi-agent architectures, and evaluation infrastructure. MS Computer Science, CalHacks '25 winner.",
       },
-      { property: "og:title", content: "Subhan Shaikh — AI Engineer" },
+      {
+        name: "keywords",
+        content:
+          "AI Engineer, LLM, RAG, Machine Learning, Python, TypeScript, Multi-Agent, Prompt Engineering",
+      },
+      { property: "og:title", content: "Subhan Shaikh — AI/ML Engineer | Production LLM Systems" },
       {
         property: "og:description",
         content:
-          "MS Computer Science at UC Santa Cruz. CalHacks '25 winner. Building reliable AI systems in production.",
+          "MS Computer Science at UC Santa Cruz. CalHacks '25 winner. Building production-grade AI systems with RAG, fine-tuning, and agentic architectures.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: "https://yourportfolio.com" },
+      { property: "profile:username", content: "shaikhsubhan" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Subhan Shaikh — AI/ML Engineer" },
+      {
+        name: "twitter:description",
+        content:
+          "Building production LLM systems, RAG pipelines, and AI agents. MS Computer Science, CalHacks '25.",
+      },
+      { name: "twitter:site", content: "@shaikhsubhan_" },
+      { name: "twitter:creator", content: "@shaikhsubhan_" },
+      { name: "theme-color", content: "#0a0a0a" },
+      { name: "author", content: "Subhan Shaikh" },
     ],
   }),
   component: Portfolio,
@@ -76,31 +101,47 @@ function useActiveSection() {
   return active;
 }
 
-function CountUp({ value, suffix = "", duration = 1400 }: { value: number; suffix?: string; duration?: number }) {
+function CountUp({
+  value,
+  suffix = "",
+  duration = 1400,
+}: {
+  value: number;
+  suffix?: string;
+  duration?: number;
+}) {
   const [n, setN] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
   useEffect(() => {
     if (!ref.current) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !started.current) {
-          started.current = true;
-          const start = performance.now();
-          const step = (now: number) => {
-            const p = Math.min(1, (now - start) / duration);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setN(Math.round(value * eased));
-            if (p < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        }
-      });
-    }, { threshold: 0.5 });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            const start = performance.now();
+            const step = (now: number) => {
+              const p = Math.min(1, (now - start) / duration);
+              const eased = 1 - Math.pow(1 - p, 3);
+              setN(Math.round(value * eased));
+              if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
     io.observe(ref.current);
     return () => io.disconnect();
   }, [value, duration]);
-  return <span ref={ref}>{n}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {n}
+      {suffix}
+    </span>
+  );
 }
 
 function NavBar({ active }: { active: string }) {
@@ -113,10 +154,13 @@ function NavBar({ active }: { active: string }) {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/60">
       <nav className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="text-base font-semibold tracking-tight text-foreground hover:text-primary transition">
+        <a
+          href="#top"
+          className="text-base font-semibold tracking-tight text-foreground hover:text-primary transition"
+        >
           Subhan Shaikh
         </a>
-        
+
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8 text-sm">
           {NAV.map((n) => (
@@ -219,7 +263,9 @@ function TerminalCard() {
         <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-        <span className="ml-3 text-[11px] font-mono text-muted-foreground tracking-wide">subhan@portfolio — zsh</span>
+        <span className="ml-3 text-[11px] font-mono text-muted-foreground tracking-wide">
+          subhan@portfolio — zsh
+        </span>
       </div>
       <div className="px-5 py-4 font-mono text-[13px] leading-6 h-[240px] overflow-hidden flex flex-col justify-end">
         {history.map((h, i) => (
@@ -236,7 +282,9 @@ function TerminalCard() {
           <span className="text-primary">➜</span>{" "}
           <span className="text-foreground/80">{current.prompt}</span>{" "}
           <span className="text-foreground">{typedCmd}</span>
-          {phase === "cmd" && <span className="inline-block w-2 h-4 align-[-2px] bg-primary ml-0.5 animate-pulse" />}
+          {phase === "cmd" && (
+            <span className="inline-block w-2 h-4 align-[-2px] bg-primary ml-0.5 animate-pulse" />
+          )}
         </div>
         {showOut && <div className="text-muted-foreground pl-4">{current.out}</div>}
       </div>
@@ -247,7 +295,11 @@ function TerminalCard() {
 function HeroBackdrop() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const cursorRef = useRef<{ x: number; y: number; strength: number }>({ x: -9999, y: -9999, strength: 0 });
+  const cursorRef = useRef<{ x: number; y: number; strength: number }>({
+    x: -9999,
+    y: -9999,
+    strength: 0,
+  });
   const targetStrengthRef = useRef(0);
 
   useEffect(() => {
@@ -348,7 +400,12 @@ function HeroBackdrop() {
 
     const onMove = (e: MouseEvent) => {
       const rect = wrap.getBoundingClientRect();
-      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+      if (
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom
+      ) {
         targetStrengthRef.current = 0;
         return;
       }
@@ -367,7 +424,11 @@ function HeroBackdrop() {
   }, []);
 
   return (
-    <div ref={wrapRef} aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+    <div
+      ref={wrapRef}
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+    >
       <div
         className="absolute inset-0 animate-breathe opacity-90"
         style={{
@@ -390,7 +451,8 @@ function Hero() {
           Building the layer between LLMs and real-world use.
         </h1>
         <p className="mt-6 max-w-2xl text-foreground/90 text-lg leading-relaxed">
-          Anyone can prompt an LLM. I build the layer that makes it reliable, measurable, and worth deploying.
+          Anyone can prompt an LLM. I build the layer that makes it reliable, measurable, and worth
+          deploying.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
@@ -408,13 +470,29 @@ function Hero() {
           </a>
         </div>
         <div className="mt-10 flex items-center justify-center gap-4">
-          <a href="https://github.com/subhan75" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition" aria-label="GitHub">
+          <a
+            href="https://github.com/subhan75"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition"
+            aria-label="GitHub"
+          >
             <Github size={20} />
           </a>
-          <a href="https://www.linkedin.com/in/subhan-shaikh75" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com/in/subhan-shaikh75"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition"
+            aria-label="LinkedIn"
+          >
             <Linkedin size={20} />
           </a>
-          <a href="mailto:subhan.shaikh.me@gmail.com" className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition" aria-label="Email">
+          <a
+            href="mailto:subhan.shaikh.me@gmail.com"
+            className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition"
+            aria-label="Email"
+          >
             <Mail size={20} />
           </a>
         </div>
@@ -425,7 +503,6 @@ function Hero() {
     </section>
   );
 }
-
 
 function About() {
   return (
@@ -440,13 +517,21 @@ function About() {
           />
           <div>
             <p className="text-lg leading-relaxed text-foreground/90">
-              Mumbai to California is a long way to go to debug a retrieval pipeline. But that&rsquo;s roughly how it went.
+              Mumbai to California is a long way to go to debug a retrieval pipeline. But
+              that&rsquo;s roughly how it went.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/90">
-              IBM gave me my first real AI project. UCSC gave me a <span className="text-primary font-mono">4.0</span> and over a year of research in explainability and Vision Language models, the kind of research that changes how you think about building, not just what you build. Gogentic gave me a startup environment, a small AI team, an eight-week deadline, and an infrastructure cost problem I cut by <span className="text-primary font-mono">80%</span>. CalHacks 2025 gave me three sponsor track wins.
+              IBM gave me my first real AI project. UCSC gave me a{" "}
+              <span className="text-primary font-mono">4.0</span> and over a year of research in
+              explainability and Vision Language models, the kind of research that changes how you
+              think about building, not just what you build. Gogentic gave me a startup environment,
+              a small AI team, an eight-week deadline, and an infrastructure cost problem I cut by{" "}
+              <span className="text-primary font-mono">80%</span>. CalHacks 2025 gave me three
+              sponsor track wins.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/90">
-              What I got out of all of it is harder to put on a resume. I know where these systems break, and I know how to make sure they don&rsquo;t.
+              What I got out of all of it is harder to put on a resume. I know where these systems
+              break, and I know how to make sure they don&rsquo;t.
             </p>
           </div>
         </div>
@@ -454,7 +539,6 @@ function About() {
     </section>
   );
 }
-
 
 function Experience() {
   return (
@@ -482,17 +566,33 @@ function Experience() {
                       left ? "md:pr-12" : "md:pl-12 md:ml-auto"
                     }`}
                   >
-                    <article className="rounded-xl border border-border bg-card/60 p-6 md:p-7 hover:border-primary/40 transition-colors">
+                    <article
+                      itemScope
+                      itemType="https://schema.org/WorkExperience"
+                      className="rounded-xl border border-border bg-card/60 p-6 md:p-7 hover:border-primary/40 transition-colors"
+                    >
                       <h3 className="text-xl font-semibold">
-                        {r.title} <span className="text-muted-foreground">·</span>{" "}
-                        <span className="text-primary">{r.company}</span>
+                        <span itemProp="jobTitle">{r.title}</span>{" "}
+                        <span className="text-muted-foreground">·</span>{" "}
+                        <span
+                          className="text-primary"
+                          itemProp="hiringOrganization"
+                          itemScope
+                          itemType="https://schema.org/Organization"
+                        >
+                          <span itemProp="name">{r.company}</span>
+                        </span>
                       </h3>
                       <div className="text-xs text-muted-foreground mt-1 tracking-wide">
-                        {r.location} · {r.dates}
+                        <span itemProp="jobLocation">{r.location}</span> ·{" "}
+                        <span itemProp="employmentType">Full-time</span> ·{" "}
+                        <span itemProp="startDate" content={r.dates.split(" - ")[0]}>
+                          {r.dates}
+                        </span>
                       </div>
                       <ul className="mt-5 space-y-2.5 text-foreground/85 leading-relaxed">
                         {r.bullets.map((b, i) => (
-                          <li key={i} className="flex gap-3">
+                          <li key={i} className="flex gap-3" itemProp="responsibilities">
                             <span className="text-primary mt-2 shrink-0">─</span>
                             <span>{b}</span>
                           </li>
@@ -524,21 +624,23 @@ function Experience() {
   );
 }
 
-
 function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
   return (
     <article
+      itemScope
+      itemType="https://schema.org/CreativeWork"
       className={`group rounded-xl border border-border bg-card/60 p-6 md:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_40px_-10px_rgba(45,212,191,0.25)] flex flex-col ${large ? "md:p-9" : ""}`}
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          {p.badge && (
-            <div className="font-mono text-xs text-primary mb-2">★ {p.badge}</div>
-          )}
+          {p.badge && <div className="font-mono text-xs text-primary mb-2">★ {p.badge}</div>}
           <h3 className={large ? "text-2xl font-semibold" : "text-lg font-semibold"}>
-            {p.title}
+            <span itemProp="name">{p.title}</span>
             {p.tagline && (
-              <span className="text-muted-foreground font-normal text-base"> — {p.tagline}</span>
+              <span className="text-muted-foreground font-normal text-base">
+                {" "}
+                — <span itemProp="description">{p.tagline}</span>
+              </span>
             )}
           </h3>
         </div>
@@ -547,6 +649,7 @@ function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
             href={p.link}
             target="_blank"
             rel="noreferrer"
+            itemProp="url"
             className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:opacity-90 transition shrink-0 whitespace-nowrap"
             aria-label={`Open ${p.title}`}
           >
@@ -554,10 +657,14 @@ function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
             <ArrowUpRight size={14} />
           </a>
         ) : (
-          <span className="font-mono text-xs text-primary/80 shrink-0">Proprietary Lab Project</span>
+          <span className="font-mono text-xs text-primary/80 shrink-0">
+            Proprietary Lab Project
+          </span>
         )}
       </div>
-      <p className="mt-3 text-foreground/80 leading-relaxed text-[15px] flex-1">{p.description}</p>
+      <p className="mt-3 text-foreground/80 leading-relaxed text-[15px] flex-1" itemProp="text">
+        {p.description}
+      </p>
       {p.metrics && (
         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 font-mono text-sm text-primary">
           {p.metrics.map((m) => (
@@ -568,13 +675,13 @@ function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
       {p.tech.length > 0 && (
         <div className="mt-5 flex flex-wrap gap-2">
           {p.tech.map((t) => (
-            <Tag key={t}>{t}</Tag>
+            <Tag key={t} itemProp="about">
+              {t}
+            </Tag>
           ))}
         </div>
       )}
-      {p.linkLabel && (
-        <div className="mt-4 font-mono text-xs text-primary">→ {p.linkLabel}</div>
-      )}
+      {p.linkLabel && <div className="mt-4 font-mono text-xs text-primary">→ {p.linkLabel}</div>}
     </article>
   );
 }
@@ -595,10 +702,12 @@ function Projects() {
           ))}
         </div>
 
-        <h3 className="mt-14 mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Other Projects</h3>
+        <h3 className="mt-14 mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+          Other Projects
+        </h3>
         <div className="grid md:grid-cols-3 gap-5">
           {COMPACT.map((p) => (
-            <div
+            <article
               key={p.title}
               className="rounded-lg border border-border bg-card/60 p-5 hover:border-primary/50 transition-all flex flex-col"
             >
@@ -616,7 +725,7 @@ function Projects() {
                 </a>
               </div>
               <p className="text-sm text-foreground/75 leading-relaxed">{p.description}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -632,17 +741,28 @@ function Achievements() {
         <div className="rounded-xl border border-border bg-card/60 p-6 md:p-8">
           <div className="font-mono text-xs text-primary mb-2">★ CalHacks &rsquo;25</div>
           <h3 className="text-xl font-semibold">CalHacks &rsquo;25 — 3 Sponsor Tracks Won</h3>
-          <p className="text-sm text-muted-foreground mt-1">UC Berkeley CalHacks 2025, the world&rsquo;s largest collegiate hackathon</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            UC Berkeley CalHacks 2025, the world&rsquo;s largest collegiate hackathon
+          </p>
           <p className="mt-2 text-foreground/80 leading-relaxed">
-            Built Orbit.ai, a modular MCP-agnostic developer productivity agent with real-time workflow automation and natural-language voice command execution. Won 3 sponsor tracks.
+            Built Orbit.ai, a modular MCP-agnostic developer productivity agent with real-time
+            workflow automation and natural-language voice command execution. Won 3 sponsor tracks.
           </p>
         </div>
         <div className="mt-6 rounded-xl border border-border bg-card/60 p-6 md:p-8">
           <div className="font-mono text-xs text-primary mb-2">★ Ideathon Circuit</div>
-          <h3 className="text-xl font-semibold">1st Place &times; 2 — Intercollegiate Ideathon Circuit</h3>
-          <p className="text-sm text-muted-foreground mt-1">Mumbai, India · Thakur College of Engineering &amp; Technology &amp; K.J. Somaiya College</p>
+          <h3 className="text-xl font-semibold">
+            1st Place &times; 2 — Intercollegiate Ideathon Circuit
+          </h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            Mumbai, India · Thakur College of Engineering &amp; Technology &amp; K.J. Somaiya
+            College
+          </p>
           <p className="mt-2 text-foreground/80 leading-relaxed">
-            Won first place at two separate intercollegiate ideathons with a single idea — an AI-powered maternal wellness platform for expectant mothers in nuclear families, combining health assessments, personalized nutrition planning, ovulation tracking, and a culturally sensitive community forum. Two competitions, two first-place finishes.
+            Won first place at two separate intercollegiate ideathons with a single idea — an
+            AI-powered maternal wellness platform for expectant mothers in nuclear families,
+            combining health assessments, personalized nutrition planning, ovulation tracking, and a
+            culturally sensitive community forum. Two competitions, two first-place finishes.
           </p>
         </div>
       </div>
@@ -658,10 +778,19 @@ function Skills() {
         <div className="space-y-6">
           {SKILLS.map((g) => (
             <div key={g.label} className="grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 items-start">
-              <div className="text-sm font-semibold uppercase tracking-[0.14em] text-primary pt-1.5">{g.label}</div>
+              <div className="text-sm font-semibold uppercase tracking-[0.14em] text-primary pt-1.5">
+                {g.label}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {g.items.map((s) => (
-                  <Tag key={s}>{s}</Tag>
+                  <span
+                    key={s}
+                    itemScope
+                    itemType="https://schema.org/Thing"
+                    className="inline-block"
+                  >
+                    <Tag itemProp="name">{s}</Tag>
+                  </span>
                 ))}
               </div>
             </div>
@@ -678,27 +807,64 @@ function Education() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel>Education</SectionLabel>
         <div className="space-y-5">
-          <div className="rounded-xl border border-border bg-card/60 p-6 md:p-8">
+          <article
+            itemScope
+            itemType="https://schema.org/EducationalOccupationalCredential"
+            className="rounded-xl border border-border bg-card/60 p-6 md:p-8"
+          >
             <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-              <h3 className="text-xl font-semibold">University of California, Santa Cruz</h3>
-              <span className="font-mono text-xs text-muted-foreground">Graduated 2026</span>
+              <h3 className="text-xl font-semibold">
+                <span itemProp="name">MS, Computer Science</span> —{" "}
+                <span itemProp="educationalLevel">Master&rsquo;s</span>
+              </h3>
+              <span
+                className="font-mono text-xs text-muted-foreground"
+                itemProp="validFrom"
+                content="2026"
+              >
+                Graduated 2026
+              </span>
             </div>
             <div className="mt-1 text-foreground/85">
-              MS, Computer Science <span className="text-muted-foreground">·</span>{" "}
-              <span className="text-primary font-mono">GPA 4.0/4.0</span>
+              <span
+                itemProp="recognizedBy"
+                itemScope
+                itemType="https://schema.org/EducationOrganization"
+              >
+                <span itemProp="name">University of California, Santa Cruz</span>
+              </span>{" "}
+              <span className="text-muted-foreground">·</span>{" "}
+              <span className="text-primary font-mono" itemProp="score">
+                GPA 4.0/4.0
+              </span>
             </div>
-            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed" itemProp="about">
               Relevant coursework: Intro to AI, Machine Learning, Deep Learning, Projects in AI,
               Database Systems, Data Structures &amp; Algorithms, Statistical Data Analysis.
             </p>
-          </div>
-          <div className="rounded-xl border border-border bg-card/60 p-6 md:p-8">
+          </article>
+          <article
+            itemScope
+            itemType="https://schema.org/EducationalOccupationalCredential"
+            className="rounded-xl border border-border bg-card/60 p-6 md:p-8"
+          >
             <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-              <h3 className="text-xl font-semibold">University of Mumbai</h3>
-              <span className="font-mono text-xs text-muted-foreground">Mumbai, India</span>
+              <h3 className="text-xl font-semibold">
+                <span itemProp="name">BE, Computer Science</span> —{" "}
+                <span itemProp="educationalLevel">Bachelor&rsquo;s</span>
+              </h3>
+              <span className="font-mono text-xs text-muted-foreground">
+                <span
+                  itemProp="recognizedBy"
+                  itemScope
+                  itemType="https://schema.org/EducationOrganization"
+                >
+                  <span itemProp="name">University of Mumbai</span>
+                </span>
+                , India
+              </span>
             </div>
-            <div className="mt-1 text-foreground/85">BE, Computer Science</div>
-          </div>
+          </article>
         </div>
       </div>
     </section>

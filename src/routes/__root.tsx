@@ -80,11 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Lovable App" },
       { name: "description", content: "Lovable Generated Project" },
       { name: "author", content: "Lovable" },
+      { name: "keywords", content: "AI Engineer, LLM, RAG, Machine Learning, TypeScript, Python" },
       { property: "og:title", content: "Lovable App" },
       { property: "og:description", content: "Lovable Generated Project" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:url", content: "https://yourportfolio.com" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@shaikhsubhan_" },
+      { name: "twitter:creator", content: "@shaikhsubhan_" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -103,10 +106,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Subhan Shaikh",
+    "jobTitle": "AI/ML Engineer",
+    "description": "Building production-grade LLM systems, RAG pipelines, and agentic architectures",
+    "url": "https://yourportfolio.com",
+    "email": "shaikhsubhan847@gmail.com",
+    "sameAs": [
+      "https://github.com/shaikhsubhan",
+      "https://linkedin.com/in/shaikhsubhan"
+    ],
+    "knowsAbout": [
+      "Large Language Models (LLM)",
+      "Retrieval-Augmented Generation (RAG)",
+      "LLM Fine-tuning",
+      "Multi-Agent Systems",
+      "Prompt Engineering",
+      "Vector Databases",
+      "Python",
+      "TypeScript",
+      "Go",
+      "Machine Learning",
+      "Deep Learning",
+      "Generative AI"
+    ]
+  };
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
         {children}

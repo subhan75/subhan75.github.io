@@ -1,0 +1,22 @@
+# Robots.txt - Search Engine Crawler Directives
+# Allows search engines to crawl and index the portfolio
+
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+# Sitemap location for search engine indexing
+Sitemap: https://yourportfolio.com/sitemap.xml
+
+# Crawl delay (be nice to servers - 1 second between requests)
+Crawl-delay: 1
+
+# Specific directives for common search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
