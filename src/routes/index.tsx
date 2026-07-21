@@ -581,22 +581,13 @@ function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
 }
 
 function Projects() {
-  const articulr: Project = {
-    title: "Articulr",
-    badge: "currently building",
-    description:
-      "A personal branding assistant on autopilot. Turns a professional's real experience into consistent personal-brand content that compounds over time — no blank page, no writing skills required, published in their own voice.",
-    tech: ["LLMs", "Agents", "Next.js"],
-    link: "https://www.articulr.com/",
-    buttonLabel: "Join Waitlist",
-  };
   return (
     <section id="projects" className="py-24 reveal">
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel>Featured Work</SectionLabel>
 
         <div className="mb-8">
-          <ProjectCard p={articulr} large />
+          <ProjectCard p={ARTICULR} large />
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -659,32 +650,6 @@ function Achievements() {
     </section>
   );
 }
-
-const SKILLS: { label: string; items: string[] }[] = [
-  { label: "Languages", items: ["Python", "JavaScript", "TypeScript", "Java", "C", "SQL"] },
-  {
-    label: "AI / ML",
-    items: [
-      "RAG",
-      "Multi-agent systems & orchestration",
-      "MCP servers",
-      "LLM fine-tuning",
-      "Model evaluation",
-      "Inference optimization",
-      "Model quantization",
-      "Prompt engineering",
-      "Vector databases",
-    ],
-  },
-  {
-    label: "Frameworks & Libraries",
-    items: ["PyTorch", "LangChain", "LangGraph", "LangSmith", "Autogen", "CrewAI", "Hugging Face", "FastAPI", "Next.js", "React"],
-  },
-  {
-    label: "Infrastructure",
-    items: ["PostgreSQL", "Supabase", "Docker", "GCP", "Vercel", "Git", "CI/CD", "REST APIs"],
-  },
-];
 
 function Skills() {
   return (
@@ -818,6 +783,7 @@ function Portfolio() {
       <Skills />
       <Education />
       <Contact />
+      <AskSubhanChat />
     </main>
   );
 }

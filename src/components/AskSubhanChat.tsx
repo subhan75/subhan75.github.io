@@ -85,7 +85,9 @@ export function AskSubhanChat() {
               <div className="space-y-2">
                 <p className="text-xs text-muted-foreground mb-3">Get started:</p>
                 <button
-                  onClick={() => handleSuggestedPrompt("What's his experience with RAG systems?", false)}
+                  onClick={() =>
+                    handleSuggestedPrompt("What's his experience with RAG systems?", false)
+                  }
                   className="w-full text-left text-xs p-2 rounded border border-border/50 bg-secondary/50 hover:bg-secondary transition"
                 >
                   What's his experience with RAG systems?
