@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { askAssistant } from "@/lib/ai-actions.server";
 import { MessageCircle, X, Send } from "lucide-react";
+import { askAssistant } from "@/lib/ai-actions.server";
 
 type Message = { role: "user" | "assistant"; text: string };
 
@@ -9,21 +9,32 @@ export function AskSubhanChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const mutation = useMutation({
     mutationFn: async (message: string) => {
-      const response = await askAssistant({
-        data: {
-          message,
-          history: messages.slice(-6),
-        },
-      });
-      return response;
+      try {
+        const response = await askAssistant({
+          data: {
+            message,
+            history: messages.slice(-6),
+          },
+        });
+        return response;
+      } catch (err) {
+        const errorMsg = err instanceof Error ? err.message : String(err);
+        setError(errorMsg);
+        throw err;
+      }
     },
     onSuccess: (response) => {
       setMessages((prev) => [...prev, { role: "assistant", text: response }]);
+      setError(null);
+    },
+    onError: () => {
+      setError("Failed to get response. Please check your API key.");
     },
   });
 
@@ -127,9 +138,9 @@ export function AskSubhanChat() {
 
           {/* Input */}
           <div className="border-t border-border p-3 space-y-2">
-            {mutation.isError && (
+            {(mutation.isError || error) && (
               <p className="text-xs text-destructive">
-                Something went wrong — email me at subhan.shaikh.me@gmail.com
+                {error || "Something went wrong — email me at subhan.shaikh.me@gmail.com"}
               </p>
             )}
             <div className="flex gap-2">
