@@ -746,19 +746,25 @@ function Projects() {
         <h3 className="mt-14 mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Other Projects</h3>
         <div className="grid md:grid-cols-3 gap-5">
           {COMPACT.map((p) => (
-            <a
+            <div
               key={p.title}
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              className="group rounded-lg border border-border bg-card/60 p-5 hover:-translate-y-1 hover:border-primary/50 transition-all flex flex-col"
+              className="rounded-lg border border-border bg-card/60 p-5 hover:border-primary/50 transition-all flex flex-col"
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2 mb-2">
                 <h4 className="font-semibold">{p.title}</h4>
-                <Github size={16} className="text-muted-foreground group-hover:text-primary transition" />
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90 transition shrink-0 whitespace-nowrap"
+                  aria-label={`View ${p.title}`}
+                >
+                  View Work
+                  <ArrowUpRight size={12} />
+                </a>
               </div>
-              <p className="mt-2 text-sm text-foreground/75 leading-relaxed">{p.description}</p>
-            </a>
+              <p className="text-sm text-foreground/75 leading-relaxed">{p.description}</p>
+            </div>
           ))}
         </div>
       </div>
