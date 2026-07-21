@@ -597,6 +597,7 @@ type Project = {
   tech: string[];
   link?: string;
   linkLabel?: string;
+  buttonLabel?: string;
   metrics?: string[];
   badge?: string;
 };
@@ -685,10 +686,11 @@ function ProjectCard({ p, large = false }: { p: Project; large?: boolean }) {
             href={p.link}
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground hover:text-primary transition shrink-0"
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:opacity-90 transition shrink-0 whitespace-nowrap"
             aria-label={`Open ${p.title}`}
           >
-            <ArrowUpRight size={20} />
+            {p.buttonLabel || "View Work"}
+            <ArrowUpRight size={14} />
           </a>
         ) : (
           <span className="font-mono text-xs text-primary/80 shrink-0">Proprietary Lab Project</span>
@@ -723,6 +725,8 @@ function Projects() {
     description:
       "A personal branding assistant on autopilot. Turns a professional's real experience into consistent personal-brand content that compounds over time — no blank page, no writing skills required, published in their own voice.",
     tech: ["LLMs", "Agents", "Next.js"],
+    link: "https://www.articulr.com/",
+    buttonLabel: "Join Waitlist",
   };
   return (
     <section id="projects" className="py-24 reveal">
