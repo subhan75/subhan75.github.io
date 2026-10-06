@@ -11,7 +11,7 @@ Description: Personal portfolio showcasing AI/ML engineering expertise in produc
 Email: shaikhsubhan847@gmail.com
 Website: https://yourportfolio.com
 GitHub: https://github.com/shaikhsubhan
-LinkedIn: https://linkedin.com/in/shaikhsubhan
+LinkedIn: https://www.linkedin.com/in/subhan75
 
 ---
 

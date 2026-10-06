@@ -85,7 +85,7 @@ export const ARTICULR: Project = {
     "A personal branding assistant on autopilot. Turns a professional's real experience into consistent personal-brand content that compounds over time — no blank page, no writing skills required, published in their own voice.",
   tech: ["LLMs", "Agents", "Next.js"],
   link: "https://www.articulr.com/",
-  buttonLabel: "Join Waitlist",
+  buttonLabel: "Live",
 };
 
 export const FEATURED: Project[] = [
@@ -188,7 +188,7 @@ export const ACHIEVEMENTS_TEXT =
 export const CONTACT = {
   email: "subhan.shaikh.me@gmail.com",
   github: "https://github.com/subhan75",
-  linkedin: "https://www.linkedin.com/in/subhan-shaikh75",
+  linkedin: "https://www.linkedin.com/in/subhan75",
   status: "Currently open to SWE / AI / FDE engineering roles at ambitious teams.",
 };
 

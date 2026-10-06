@@ -34,7 +34,11 @@ export const Route = createFileRoute("/")({
           "MS Computer Science at UC Santa Cruz. CalHacks '25 winner. Building production-grade AI systems with RAG, fine-tuning, and agentic architectures.",
       },
       { property: "og:type", content: "profile" },
-      { property: "og:url", content: "https://yourportfolio.com" },
+      { property: "og:url", content: "https://subhan75.github.io" },
+      { property: "og:image", content: "https://subhan75.github.io/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
       { property: "profile:username", content: "shaikhsubhan" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Subhan Shaikh — AI/ML Engineer" },
@@ -45,6 +49,7 @@ export const Route = createFileRoute("/")({
       },
       { name: "twitter:site", content: "@shaikhsubhan_" },
       { name: "twitter:creator", content: "@shaikhsubhan_" },
+      { name: "twitter:image", content: "https://subhan75.github.io/og-image.png" },
       { name: "theme-color", content: "#0a0a0a" },
       { name: "author", content: "Subhan Shaikh" },
     ],
@@ -480,7 +485,7 @@ function Hero() {
             <Github size={20} />
           </a>
           <a
-            href="https://www.linkedin.com/in/subhan-shaikh75"
+            href="https://www.linkedin.com/in/subhan75"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/80 bg-card/70 text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition"
@@ -916,7 +921,7 @@ function Contact() {
             <Github size={16} /> GitHub
           </a>
           <a
-            href="https://www.linkedin.com/in/subhan-shaikh75"
+            href="https://www.linkedin.com/in/subhan75"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card/70 px-4 py-2.5 text-sm text-foreground/80 hover:text-primary hover:border-primary/50 hover:bg-card transition"

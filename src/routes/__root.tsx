@@ -85,9 +85,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Lovable Generated Project" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://yourportfolio.com" },
+      { property: "og:image", content: "https://subhan75.github.io/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@shaikhsubhan_" },
       { name: "twitter:creator", content: "@shaikhsubhan_" },
+      { name: "twitter:image", content: "https://subhan75.github.io/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -97,6 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
+      { rel: "canonical", href: "https://subhan75.github.io" },
     ],
   }),
   shellComponent: RootShell,
@@ -116,7 +122,7 @@ function RootShell({ children }: { children: ReactNode }) {
     "email": "shaikhsubhan847@gmail.com",
     "sameAs": [
       "https://github.com/shaikhsubhan",
-      "https://linkedin.com/in/shaikhsubhan"
+      "https://www.linkedin.com/in/subhan75"
     ],
     "knowsAbout": [
       "Large Language Models (LLM)",

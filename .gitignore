@@ -92,3 +92,6 @@ scripts/post-build.js
 api/
 
 vercel.json
+
+# Local design exploration mockups (not part of the shipped site)
+design-concepts/
